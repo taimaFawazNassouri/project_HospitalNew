@@ -1,24 +1,20 @@
 <?php
 
 namespace App\Models;
-use Astrotomic\Translatable\Translatable;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Service;
+use Astrotomic\Translatable\Translatable;
 
 class Group extends Model
 {
+    use Translatable;
     use HasFactory;
-    use Translatable; // 2. To add translation methods
-    protected $fillable= ['Total_before_discount','Total_after_discount','discount_value','Total_with_tax','tax_rate'];
-
-    // 3. To define which attributes needs to be translated
     public $translatedAttributes = ['name','notes'];
+    public $fillable= ['Total_before_discount','discount_value','Total_after_discount','tax_rate','Total_with_tax'];
+    //public $guarded=[];
 
-    
     public function service_group()
     {
-        return $this->belongsToMany(Service::class,'service_group');
-    }
-}
+        return $this->belongsToMany(Service::class,'service_group')->withPivot('quantity');
+    }}

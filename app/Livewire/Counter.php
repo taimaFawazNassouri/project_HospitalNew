@@ -22,10 +22,7 @@ class Counter extends Component
     public $ServiceUpdated =false;
 
 
-    public function view()
-    {
-        return view('livewire.include');
-    }
+   
     public function mount()
     {
         $this->allServices = Service::all();
@@ -130,7 +127,7 @@ class Counter extends Component
             // حفظ العلاقة
             $Groups->service_group()->detach();
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->service_group()->attach($GroupsItem['service_id']);
+                $Groups->service_group()->attach($GroupsItem['service_id'],['quantity' => $GroupsItem['quantity']]);
             }
 
             $this->ServiceSaved = false;
@@ -169,7 +166,7 @@ class Counter extends Component
 
             // حفظ العلاقة
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->service_group()->attach($GroupsItem['service_id'],);
+                $Groups->service_group()->attach($GroupsItem['service_id'],['quantity' => $GroupsItem['quantity']]);
             }
 
             $this->reset('GroupsItems', 'name_group', 'notes');
@@ -191,35 +188,39 @@ class Counter extends Component
 
     public function edit($id)
     {
-        $this->show_table = false;
         $this->updateMode = true;
-        $group = Group::where('id',$id)->first();
-        $this->group_id = $id;
+        $this->show_table = false;
+     
+         $group = Group::where('id',$id)->first();
+    //    // $group = Group::findOrFail($this->group_id)->get();
+    //     $this->group_id = $id;
 
-        $this->reset('GroupsItems', 'name_group', 'notes');
-        $this->name_group= $group->name;
-        $this->notes= $group->notes;
+    //     $this->reset('GroupsItems', 'name_group', 'notes');
+    //     $this->name_group=$group->name;
+    //     $this->notes=$group->notes;
 
-        $this->discount_value = intval($group->discount_value);
-        $this->ServiceSaved = false;
+    //     $this->discount_value = intval($group->discount_value);
+    //     $this->ServiceSaved = false;
 
-        foreach ($group->service_group as $serviceGroup)
-        {
-            $this->GroupsItems[] = [
-                'service_id' => $serviceGroup->id,
-                'quantity' => 8,
-                'is_saved' => true,
-                'service_name' => $serviceGroup->name,
-                'service_price' => $serviceGroup->price
-            ];
-        }
+    //     foreach ($group->service_group as $serviceGroup)
+    //     {
+    //         $this->GroupsItems[] = [
+    //             'service_id' => $serviceGroup->id,
+    //             'quantity' => $serviceGroup->pivot->quantity,
+    //             'is_saved' => true,
+    //             'service_name' => $serviceGroup->name,
+    //             'service_price' => $serviceGroup->price
+    //         ];
+    //     }
+       
+       
     }
 
 
     public function delete($id){
 
         Group::destroy($id);
-        return redirect()->to('/Add_GroupServices');
+        return redirect()->to('Add_GroupServices');
 
     }
 

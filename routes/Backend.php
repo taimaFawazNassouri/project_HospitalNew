@@ -54,9 +54,11 @@ use Illuminate\Support\Facades\Route;
 
             Route::resource('Sections', SectionController::class);
 
+            Route::view('Add_GroupService', 'livewire.include')->name('Add_GroupService');
+
+
             Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/livewire/update', $handle)
-                    ->middleware(App\Http\Middleware\RedirectIfAuthenticated::class);
+                return Route::post('/livewire/update', $handle);
             });
  
 

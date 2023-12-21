@@ -1,15 +1,17 @@
-
 <div>
 
     @if ($ServiceSaved)
         <div class="alert alert-info">تم حفظ البيانات بنجاح.</div>
     @endif
 
-    @if ($show_table)
-    @include('livewire.index')
-    
-    @else
-    <form wire:submit.prevent="saveGroup" autocomplete="off">
+        @if ($ServiceUpdated)
+            <div class="alert alert-info">تم تعديل البيانات بنجاح.</div>
+        @endif
+
+   @if($show_table)
+       @include('livewire.index')
+   @else
+ <form wire:submit.prevent="saveGroup" autocomplete="off">
         @csrf
         <div class="form-group">
             <label>اسم المجموعة</label>
@@ -136,8 +138,8 @@
             </div>
         </div>
 
-    </form>  
-    @endif
-   
+    </form>
+   @endif
+
 
 </div>
