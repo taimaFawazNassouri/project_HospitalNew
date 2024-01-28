@@ -7,7 +7,10 @@ use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\ReceiptAccountController;
+use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\DoctorLoginController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use App\Livewire\Counter;
 
@@ -24,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
  Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
- //Route::view('Add_GroupService', 'livewire.include')->middleware(['auth:admin'])->name('Add_GroupService');
 
  Route::group(
     [
@@ -38,7 +40,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/dashboard/user', function () {
             return view('Dashboard.User.index');
         })->middleware(['auth', 'verified'])->name('dashboard.user');
-         //############################ end Dashboard user #########################################
+        //############################ end Dashboard user #########################################
 
         //############################   Dashboard admin #########################################
         
@@ -46,31 +48,18 @@ use Illuminate\Support\Facades\Route;
             return view('Dashboard.Admin.index');
         })->middleware(['auth:admin', 'verified'])->name('dashboard.user');
         Route::post('logout/Admin', [AdminController::class, 'destroy'])->middleware(['auth:admin', 'verified'])->name('logout_admin');
-
         
-        //############################ end Dashboard admin #########################################
+        //############################ end Dashboard admin #########################################        
+         
+
         Route::middleware(['auth:admin'])->group(function () {
           //############################ Start Sections #############################################
 
             Route::resource('Sections', SectionController::class);
-
-            Route::view('Add_GroupService', 'livewire.include')->name('Add_GroupService');
-
-
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/livewire/update', $handle);
-            });
- 
-
-
-
-          
-
             
            
             //############################ End Sections #############################################
            //############################ Start Doctors #############################################
-
 
             Route::resource('Doctors', DoctorController::class);
             //############################ End Doctors #############################################
@@ -81,20 +70,54 @@ use Illuminate\Support\Facades\Route;
 
             //############################   Dashboard services #########################################
             Route::resource('Single_Service', SingleServiceController::class);
-            //############################   Dashboard Group services #########################################
-           //############################# insurance route ##########################################
+
+           //############################   Dashboard Group services #########################################
+
+
+            Route::view('Add_GroupService', 'livewire.Group_Service.include')->name('Add_GroupService');
+
+
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/livewire/update', $handle);
+            });
+           //############################# insurance route ########################################
             Route::resource('insurance', InsuranceController::class);
 
-           //############################# end insurance route ######################################
+          //############################# end insurance route #####################################
            
-           //############################# start ambulance route ######################################
+          //############################# start ambulance route ###################################
            Route::resource('Ambulance', AmbulanceController::class);
            
-           //############################# end ambulance route ######################################
-          //############################# start patient route ######################################
+          //############################# end ambulance route #####################################
+
+          //############################# start patient route #####################################
           Route::resource('Patients', PatientController::class);
 
-         //############################# end Patients route ######################################
+          //############################# end Patients route ######################################
+
+          //############################# start single_invocie route ##############################
+          Route::view('Single_invoice', 'livewire.Single_Invoice.index')->name('Single_invoice');
+          Route::view('Print_single_invoices', 'livewire.Single_Invoice.print')->name('Print_single_invoices');
+
+          //############################# end single_invocie route ################################
+         //############################# start group_invocie route ##############################
+          Route::view('group_invoice', 'livewire.Group_Invoice.index')->name('group_invoice');
+          Route::view('Print_group_invoices', 'livewire.Group_Invoice.print')->name('Print_group_invoices');
+ 
+         //############################# end group_invocie route ################################
+
+          //############################# start ReceiptAccount route ######################################
+          Route::resource('Receipt', ReceiptAccountController::class);
+
+          //############################# end ReceiptAccount route ######################################
+
+          //############################# start PaymentAccount route ######################################
+          Route::resource('Payment', PaymentAccountController::class);
+
+          //############################# end PaymentAccount route ######################################
+
+
+
 
 
 

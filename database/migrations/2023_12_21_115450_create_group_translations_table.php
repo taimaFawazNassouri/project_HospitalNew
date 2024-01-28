@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('group_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->string('notes')->nullable();
             $table->unique(['Group_id','locale']);
             $table->foreignId('Group_id')->references('id')->on('groups')->onDelete('cascade');

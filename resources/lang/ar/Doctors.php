@@ -29,6 +29,7 @@ return array (
   'processes' => 'العمليات',
   'save' => 'تأكيد',
   'section' => 'القسم',
+  'statments' => 'الكشوفات',
   'status' => 'حالة الطبيب',
   'store' => 'حفظ',
   'submit' => 'تاكيد',

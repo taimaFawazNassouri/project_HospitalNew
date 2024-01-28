@@ -20,6 +20,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard/user';
     public const ADMIN = '/dashboard/admin';
+    public const DOCTOR = '/dashboard/doctor';
+
 
 
     /**
@@ -43,6 +45,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
             Route::middleware('web')
                 ->group(base_path('routes/Backend.php'));
+            Route::middleware('web')
+                ->group(base_path('routes/doctor.php'));
         });
     }
 }

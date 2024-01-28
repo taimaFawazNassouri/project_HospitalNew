@@ -126,7 +126,7 @@
 														</div>
 											</div>
 											<!--form doctor -->
-											 {{-- <div class="loginform" id="doctors">
+											 <div class="loginform" id="doctors">
 													<h5 class="font-weight-semibold mb-4">Log In As Doctor</h5>
 													<form method="POST" action="{{ route('login_doctor') }}">
 														@csrf
@@ -163,7 +163,7 @@
 														@endif
 											
 													</div>
-											</div> --}}
+											</div>
 
 										</div>
 										</div> 

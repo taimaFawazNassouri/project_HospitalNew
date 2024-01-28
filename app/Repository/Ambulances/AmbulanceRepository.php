@@ -21,25 +21,28 @@ class AmbulanceRepository implements AmbulanceRepositoryInterface
 
     public function store($request)
     {
-        try {
+        try
+         {
+            $ambulances = new Ambulance();
+            $ambulances->car_number = $request->car_number;
+            $ambulances->car_model = $request->car_model;
+            $ambulances->car_year_made = $request->car_year_made;
+            $ambulances->driver_license_number = $request->driver_license_number;
+            $ambulances->driver_phone = $request->driver_phone;
+            $ambulances->is_available = 1;
+            $ambulances->car_type = $request->car_type;
+            $ambulances->save();
+     
+            //insert trans
+            $ambulances->driver_name = $request->driver_name;
+            $ambulances->notes = $request->notes;
+            $ambulances->save();
+     
+            session()->flash('add');
+            return redirect()->back();
 
-       $ambulances = new Ambulance();
-       $ambulances->car_number = $request->car_number;
-       $ambulances->car_model = $request->car_model;
-       $ambulances->car_year_made = $request->car_year_made;
-       $ambulances->driver_license_number = $request->driver_license_number;
-       $ambulances->driver_phone = $request->driver_phone;
-       $ambulances->is_available = 1;
-       $ambulances->car_type = $request->car_type;
-       $ambulances->save();
 
-       //insert trans
-       $ambulances->driver_name = $request->driver_name;
-       $ambulances->notes = $request->notes;
-       $ambulances->save();
-
-      session()->flash('add');
-      return redirect()->back();
+      
 
         }
 

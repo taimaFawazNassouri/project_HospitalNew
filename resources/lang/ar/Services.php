@@ -8,6 +8,7 @@ return array (
   'delete_service' => 'حذف خدمة',
   'description' => 'الوصف',
   'edit_service' => 'تعديل خدمة',
+  'group' => 'مجموعة خدمات',
   'group_services' => 'مجموعة خدمات',
   'insurance' => 'شركات التأمين',
   'name' => 'الإسم',

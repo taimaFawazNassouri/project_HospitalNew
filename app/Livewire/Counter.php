@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Group;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Counter extends Component
@@ -16,13 +17,11 @@ class Counter extends Component
     public $name_group;
     public $notes;
     public $ServiceSaved = false;
-    public $show_table =true;
+    public $ServiceUpdated = false;
+    public $show_table = true;
     public $updateMode = false;
     public $group_id;
-    public $ServiceUpdated =false;
 
-
-   
     public function mount()
     {
         $this->allServices = Service::all();
@@ -38,8 +37,8 @@ class Counter extends Component
             }
         }
 
-        return view('livewire.counter', [
-            'groups'=> Group::all(),
+        return view('livewire.Group_Service.counter', [
+            'groups'=>Group::all(),
             'subtotal' => $Total_after_discount = $total - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
             'total' => $Total_after_discount * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100)
         ]);
@@ -98,9 +97,8 @@ class Counter extends Component
     public function saveGroup()
     {
 
+        // update
         if($this->updateMode){
-
-           
             $Groups = Group::find($this->group_id);
             $total = 0;
             foreach ($this->GroupsItems as $groupItem) {
@@ -137,6 +135,7 @@ class Counter extends Component
 
         else{
 
+            // insert
             $Groups = new Group();
             $total = 0;
 
@@ -160,8 +159,8 @@ class Counter extends Component
             $Groups->save();
 
             // حفظ الترجمة
-            $Groups->name=$this->name_group;
-            $Groups->notes=$this->notes;
+            $Groups->name=  $this->name_group;
+            $Groups->notes= $this->notes;
             $Groups->save();
 
             // حفظ العلاقة
@@ -179,49 +178,39 @@ class Counter extends Component
 
     }
 
-
     public function show_form_add(){
-
         $this->show_table = false;
     }
-
 
     public function edit($id)
     {
-        $this->updateMode = true;
         $this->show_table = false;
-     
-         $group = Group::where('id',$id)->first();
-    //    // $group = Group::findOrFail($this->group_id)->get();
-    //     $this->group_id = $id;
+        $this->updateMode = true;
+        $group = Group::where('id',$id)->first();
+        $this->group_id = $id;
 
-    //     $this->reset('GroupsItems', 'name_group', 'notes');
-    //     $this->name_group=$group->name;
-    //     $this->notes=$group->notes;
+        $this->reset('GroupsItems', 'name_group', 'notes');
+        $this->name_group=$group->name;
+        $this->notes=$group->notes;
 
-    //     $this->discount_value = intval($group->discount_value);
-    //     $this->ServiceSaved = false;
+        $this->discount_value = intval($group->discount_value);
+        $this->ServiceSaved = false;
 
-    //     foreach ($group->service_group as $serviceGroup)
-    //     {
-    //         $this->GroupsItems[] = [
-    //             'service_id' => $serviceGroup->id,
-    //             'quantity' => $serviceGroup->pivot->quantity,
-    //             'is_saved' => true,
-    //             'service_name' => $serviceGroup->name,
-    //             'service_price' => $serviceGroup->price
-    //         ];
-    //     }
-       
-       
+        foreach ($group->service_group as $serviceGroup)
+        {
+            $this->GroupsItems[] = [
+                'service_id' => $serviceGroup->id,
+                'quantity' => $serviceGroup->pivot->quantity,
+                'is_saved' => true,
+                'service_name' => $serviceGroup->name,
+                'service_price' => $serviceGroup->price
+            ];
+        }
     }
 
-
     public function delete($id){
-
         Group::destroy($id);
-        return redirect()->to('Add_GroupServices');
-
+        return redirect()->to('/Add_GroupServices');
     }
 
 }

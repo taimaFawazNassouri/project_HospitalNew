@@ -45,7 +45,7 @@
                                         @foreach($Patients as $Patient)
 											<tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$Patient->name}}</td>
+											    <td> <a href="{{ route('Patients.show',$Patient->id)}}">{{$Patient->name}}</a></td>
                                                 <td>{{$Patient->email}}</td>
                                                 <td>{{$Patient->Date_Birth}}</td>
                                                 <td>{{$Patient->Phone}}</td>
@@ -54,7 +54,9 @@
                                                 <td>{{$Patient->Address}}</td>
                                                 <td>
                                                     <a href="{{route('Patients.edit',$Patient->id)}}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Deleted{{$Patient->id}}"><i class="fas fa-trash"></i></button>
+													<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Deleted{{$Patient->id}}"><i class="fas fa-trash"></i></button>
+													<a href="{{route('Patients.show',$Patient->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+
                                                 </td>
 											</tr>
                                            @include('Dashboard.Patients.Deleted')

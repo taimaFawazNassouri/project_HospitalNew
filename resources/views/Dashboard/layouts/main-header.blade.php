@@ -259,9 +259,10 @@
 					
 						@if(auth('web')->check())
 						<form method="POST" action="{{ route('logout') }}">
-						@else
+						@elseif(auth('admin')->check())
 						<form method="POST" action="{{ route('logout_admin') }}">
-	
+						@else
+						<form method="POST" action="{{ route('logout.doctor') }}">
 
 						@endif
 				

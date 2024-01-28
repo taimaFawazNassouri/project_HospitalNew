@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Doctor extends Model
+
+class Doctor extends Authenticatable
 {
     use HasFactory;
     use Translatable; // 2. To add translation methods

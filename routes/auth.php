@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\DoctorLoginController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +28,14 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.user');
     //=========================End Login $ Logout User ========================================
 
-    //========================= Login $ Logout Admin ========================================
+    //========================= Login Admin ========================================
    Route::post('Admin/login', [AdminController::class, 'store'])->name('login_admin');
-   //=========================End Login $ Logout  Admin ========================================
+    //=========================End Login Admin ========================================
+    //========================= Login  Doctor ========================================
+   Route::post('Doctor/login', [DoctorLoginController::class, 'store'])->name('login_doctor');
+
+
+    //=========================End Login Doctor ========================================
 
 
 
@@ -64,7 +71,9 @@ Route::middleware('auth')->group(function () {
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 
 

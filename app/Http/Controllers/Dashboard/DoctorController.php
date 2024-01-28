@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Doctors\DoctorRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDoctorRequest;
 use App\Models\Doctor;
 use App\Models\Section;
 use App\Models\Image;
@@ -12,9 +13,6 @@ use App\Models\Appointment;
 
 class DoctorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     private $DoctorRepository;
   
     public function __construct(DoctorRepositoryInterface $DoctorRepository)
@@ -27,41 +25,30 @@ class DoctorController extends Controller
        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return $this->Doctor->create();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(StoreDoctorRequest $request)
     {
         return $this->Doctor->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
          return $this->Doctor->edit($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request)
     {
          return $this->Doctor->update($request);
@@ -76,7 +63,7 @@ class DoctorController extends Controller
         return $this->Doctor->update_password($request);
 
     }
-    public function update_status(request $request)
+    public function update_status(Request $request)
     {
         $this->validate($request, [
             'status' => 'required|in:0,1',
@@ -84,9 +71,8 @@ class DoctorController extends Controller
         return $this->Doctor->update_status($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
+
     public function destroy(Request $request)
     {
        return $this->Doctor->destroy($request);

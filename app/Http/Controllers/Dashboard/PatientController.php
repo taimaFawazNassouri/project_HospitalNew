@@ -35,13 +35,14 @@ class PatientController extends Controller
     }
 
 
-    public function show($id)
+    public function show(String $id)
     {
-        //
+       return $this->Patient->show($id);
+
     }
 
 
-    public function edit($id)
+    public function edit(String $id)
     {
         return $this->Patient->edit($id);
     }
