@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ray extends Model
 {
     use HasFactory;
-    protected $fillable = ['description', 'invoice_id','doctor_id','patient_id'];
+    protected $fillable = ['description','description_employee','invoice_id','doctor_id','patient_id','employee_id','case'];
     /**
      * Get the doctor that owns the Ray
      *
@@ -17,5 +17,16 @@ class Ray extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class, 'doctor_id');
+    }
+    public function employee()
+    {
+        return $this->belongsTo(RayEmployee::class, 'employee_id')->withDefault(['name'=>'noEmployee']);
+    }
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
+    public function images(){
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

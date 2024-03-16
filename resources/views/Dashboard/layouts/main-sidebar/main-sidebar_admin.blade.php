@@ -20,14 +20,16 @@
             </div>
         </div>
         <ul class="side-menu">
-            
+            <li class="side-item side-item-category">{{trans('main-sidebar_trans.Main')}}</li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('Doctors.statments')}}</span><i class="angle fe fe-chevron-down"></i></a>
-                <ul class="slide-menu">
-                <li><a class="slide-item" href="{{route('invoices.index') }}">{{trans('main-sidebar_trans.view all')}}</a></li>
-                <li><a class="slide-item" href="{{ route('review_invoices') }}">{{ trans('invoices.review_invoices')}}</a></li>
-                <li><a class="slide-item" href="{{route('completed_invoices') }}">{{trans('invoices.completed_invoices')}}</a></li>
+                <a class="side-menu__item" href="{{ route('dashboard.user') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg><span class="side-menu__label">{{trans('main-sidebar_trans.index')}}</a>
+            </li>
+            <li class="side-item side-item-category">General</li>
 
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('main-sidebar_trans.sections')}}</span><i class="angle fe fe-chevron-down"></i></a>
+                <ul class="slide-menu">
+                <li><a class="slide-item" href="{{route('Sections.index') }}">{{trans('main-sidebar_trans.view all')}}</a></li>
                 </ul>
             </li>
             <li class="slide">
@@ -64,31 +66,26 @@
                
                 </ul>
             </li>
+         
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15 11V4H4v8.17l.59-.58.58-.59H6z" opacity=".3"/><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-5 7c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10zM4.59 11.59l-.59.58V4h11v7H5.17l-.58.59z"/></svg><span class="side-menu__label">{{trans('Invoices.Accounts')}}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('Receipt.index') }}">{{trans('Invoices.catch_receipt')}}</a></li>
                     <li><a class="slide-item" href="{{ route('Payment.index') }}">{{trans('Invoices.payment_receipt')}}</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='mail-read') }}">Read-</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='mail-settings') }}">mail-settings</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='chat') }}">Chat</a></li>
+                  
                 </ul>
             </li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 4H6v16h12V9h-5V4zm3 14H8v-2h8v2zm0-6v2H8v-2h8z" opacity=".3"/><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg><span class="side-menu__label">Forms</span><i class="angle fe fe-chevron-down"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M13 4H6v16h12V9h-5V4zm3 14H8v-2h8v2zm0-6v2H8v-2h8z" opacity=".3"/><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg><span class="side-menu__label">{{trans('Rays.rays')}}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-elements') }}">Form Elements</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-advanced') }}">Advanced Forms</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-layouts') }}">Form Layouts</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-validation') }}">Form Validation</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-wizards') }}">Form Wizards</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='form-editor') }}">WYSIWYG Editor</a></li>
+                    <li><a class="slide-item" href="{{route('RayEmployee.index') }}">{{trans('Rays.list_employees')}}</a></li>
+               
                 </ul>
             </li>
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h15v3H5zm12 5h3v9h-3zm-7 0h5v9h-5zm-5 0h3v9H5z" opacity=".3"/><path d="M20 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5v-9h3v9zm7 0h-5v-9h5v9zm5 0h-3v-9h3v9zm0-11H5V5h15v3z"/></svg><span class="side-menu__label">Tables</span><i class="angle fe fe-chevron-down"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h15v3H5zm12 5h3v9h-3zm-7 0h5v9h-5zm-5 0h3v9H5z" opacity=".3"/><path d="M20 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H5v-9h3v9zm7 0h-5v-9h5v9zm5 0h-3v-9h3v9zm0-11H5V5h15v3z"/></svg><span class="side-menu__label">{{trans('Laboratorie.laboratorie')}}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ url('/' . $page='table-basic') }}">Basic Tables</a></li>
+                    <li><a class="slide-item" href="{{ route('LaboratorieEmployee.index') }}">{{trans('Rays.list_employees')}}</a></li>
                     <li><a class="slide-item" href="{{ url('/' . $page='table-data') }}">Data Tables</a></li>
                 </ul>
             </li>

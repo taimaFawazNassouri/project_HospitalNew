@@ -8,7 +8,8 @@ use App\Models\FundAccount;
 use App\Models\PatientAccount;
 use App\Models\Service;
 use App\Models\Invoice;
-use App\Models\single_invoice;
+use App\Models\Notification;
+use App\Events\CreateInvoice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -20,8 +21,14 @@ class SingleInvoices extends Component
     public $discount_value = 0;
     public $tax_rate = 17;
     public $updateMode = false;
+    public $username;
     public $price,$patient_id,$doctor_id,$section_id,$type,$Service_id,$single_invoice_id,$catchError;
 
+
+
+    public function mount(){
+        $this->username = auth()->user()->name;
+    }
     public function render()
     {
         return view('livewire.Single_Invoice.single-invoices', [
@@ -135,8 +142,27 @@ class SingleInvoices extends Component
                     $fund_accounts->credit = 0.00;
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
-                    $this->show_table =true;
+                    $this->show_table =true; 
+
+
+                     $notification = new Notification();
+                     $notification->user_id = $this->doctor_id;
+                     $patient = Patient::findOrFail($this->patient_id);
+                     $notification->message = 'كشف أخصائي'.$patient->name;
+                     $notification->save();
+
+                    $data = [
+                        'patient' =>$this->patient_id,
+                        'invoice_id' =>$single_invoices->id,
+                        'doctor_id' =>$this->doctor_id,
+
+
+                    ];
+
+                    event(new CreateInvoice($data));
+
                 }
+
                 DB::commit();
             }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Interfaces\doctor_dashboard\DiagnosisRepositoryInterface;
+use App\Interfaces\Doctor_dashboard\DiagnosisRepositoryInterface;
 
 
 class DiagnosisController extends Controller
@@ -16,17 +16,6 @@ class DiagnosisController extends Controller
     {
         $this->Diagnosis = $DiagnosisRepository;
     }
-    public function index()
-    {
-        //
-    }
-
-   
-    public function create()
-    {
-        //
-    }
-
   
     public function store(Request $request)
     {
@@ -45,18 +34,5 @@ class DiagnosisController extends Controller
     }
 
  
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
-    }
+  
 }

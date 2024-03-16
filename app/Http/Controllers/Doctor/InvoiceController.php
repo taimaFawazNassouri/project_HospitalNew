@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Interfaces\doctor_dashboard\InvoicesRepositoryInterface;
+use App\Interfaces\Doctor_dashboard\DoctorInvoiceRepositoryInterface;
 
 
 class InvoiceController extends Controller
 {
     private $InvoiceRepository;
   
-    public function __construct(InvoicesRepositoryInterface $InvoiceRepository)
+    public function __construct(DoctorInvoiceRepositoryInterface $InvoiceRepository)
     {
         $this->Invoice = $InvoiceRepository;
     }  
     public function index()
     {
-        return $this->Invoice->index();
+         return $this->Invoice->index();
     }
     public function review_invoices()
     {
@@ -27,39 +27,11 @@ class InvoiceController extends Controller
     {
         return $this->Invoice->completed_invoices();
     }
-
-    public function create()
+    public function show(String $id)
     {
-        //
+        return $this->Invoice->show($id);
     }
-
-    
-    public function store(Request $request)
-    {
-        //
-    }
-
-    
-    public function show(string $id)
-    {
-        //
-    }
-
-    
-    public function edit(string $id)
-    {
-        //
-    }
+  
 
    
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-   
-    public function destroy(string $id)
-    {
-        //
-    }
 }

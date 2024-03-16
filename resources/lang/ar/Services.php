@@ -4,6 +4,8 @@ return array (
   'Ambulance_call' => 'مكالمات الإسعاف',
   'add_service' => 'إضافة خدمة',
   'ambulance' => 'الإسعاف',
+  'count_group_services' => 'عدد الخدمات المجمعة',
+  'count_single_services' => 'عدد الخدمات المفردة',
   'created_at' => 'تاريخ الإضافة',
   'delete_service' => 'حذف خدمة',
   'description' => 'الوصف',

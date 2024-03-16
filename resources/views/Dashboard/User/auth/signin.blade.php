@@ -44,6 +44,12 @@
 													  <option value="users">{{trans('Dashboard/login_trans.user')}}</option>
 													  <option value="admin">{{trans('Dashboard/login_trans.admin')}}</option>
 													  <option value="doctors">{{trans('Dashboard/login_trans.doctor')}}</option>
+													  <option value="ray_employee">{{trans('login_trans.Ray_employee')}}</option>
+													  <option value="laboratorie_employee">{{trans('Dashboard/login_trans.laboratorie_employee')}}</option>
+													  <option value="patient">{{trans('Dashboard/login_trans.patient')}}</option>
+
+
+
 													
 													</select>
 												  </div>
@@ -126,9 +132,128 @@
 														</div>
 											</div>
 											<!--form doctor -->
-											 <div class="loginform" id="doctors">
+											<div class="loginform" id="doctors">
 													<h5 class="font-weight-semibold mb-4">Log In As Doctor</h5>
 													<form method="POST" action="{{ route('login_doctor') }}">
+														@csrf
+														<div class="form-group">
+															<x-input-label for="email" :value="__('Email')" />
+															<x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+															<x-input-error :messages="$errors->get('email')" class="mt-2" />
+														</div>
+														<div class="form-group">
+																<x-input-label for="password" :value="__('Password')" />
+	
+																<x-text-input id="password" class="form-control"
+																				type="password"
+																				name="password"
+																				required autocomplete="current-password" />
+													
+																<x-input-error :messages="$errors->get('password')" class="mt-2" />
+														</div>
+														<button class="btn btn-main-primary btn-block" type="submit" >Sign In</button>
+														<div class="row row-xs">
+															<div class="col-sm-6">
+																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
+															</div>
+															<div class="col-sm-6 mg-t-10 mg-sm-t-0">
+																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
+															</div>
+														</div>
+													</form>
+													<div class="main-signin-footer mt-5">
+															@if (Route::has('password.request'))
+															<a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+																{{ __('Forgot your password?') }}
+															</a>
+														@endif
+											
+													</div>
+											</div>
+											<!--form ray_employee -->
+											<div class="loginform" id="ray_employee">
+												<h5 class="font-weight-semibold mb-4">Log In As RayEmployee</h5>
+												<form method="POST" action="{{ route('login_RayEmployee') }}">
+													@csrf
+													<div class="form-group">
+														<x-input-label for="email" :value="__('Email')" />
+														<x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+														<x-input-error :messages="$errors->get('email')" class="mt-2" />
+													</div>
+													<div class="form-group">
+															<x-input-label for="password" :value="__('Password')" />
+
+															<x-text-input id="password" class="form-control"
+																			type="password"
+																			name="password"
+																			required autocomplete="current-password" />
+												
+															<x-input-error :messages="$errors->get('password')" class="mt-2" />
+													</div>
+													<button class="btn btn-main-primary btn-block" type="submit" >Sign In</button>
+													<div class="row row-xs">
+														<div class="col-sm-6">
+															<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
+														</div>
+														<div class="col-sm-6 mg-t-10 mg-sm-t-0">
+															<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
+														</div>
+													</div>
+												</form>
+												<div class="main-signin-footer mt-5">
+														@if (Route::has('password.request'))
+														<a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+															{{ __('Forgot your password?') }}
+														</a>
+													@endif
+										
+												</div>
+											</div>
+											<!--form laboratorie_employee -->
+
+											<div class="loginform" id="laboratorie_employee">
+													<h5 class="font-weight-semibold mb-4">Log In As LaborstorieEmployee</h5>
+													<form method="POST" action="{{ route('login_LaboratorieEmployee') }}">
+														@csrf
+														<div class="form-group">
+															<x-input-label for="email" :value="__('Email')" />
+															<x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+															<x-input-error :messages="$errors->get('email')" class="mt-2" />
+														</div>
+														<div class="form-group">
+																<x-input-label for="password" :value="__('Password')" />
+	
+																<x-text-input id="password" class="form-control"
+																				type="password"
+																				name="password"
+																				required autocomplete="current-password" />
+													
+																<x-input-error :messages="$errors->get('password')" class="mt-2" />
+														</div>
+														<button class="btn btn-main-primary btn-block" type="submit" >Sign In</button>
+														<div class="row row-xs">
+															<div class="col-sm-6">
+																<button class="btn btn-block"><i class="fab fa-facebook-f"></i> Signup with Facebook</button>
+															</div>
+															<div class="col-sm-6 mg-t-10 mg-sm-t-0">
+																<button class="btn btn-info btn-block"><i class="fab fa-twitter"></i> Signup with Twitter</button>
+															</div>
+														</div>
+													</form>
+													<div class="main-signin-footer mt-5">
+															@if (Route::has('password.request'))
+															<a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+																{{ __('Forgot your password?') }}
+															</a>
+														@endif
+											
+													</div>
+											</div>
+											<!--form Patient -->
+
+											<div class="loginform" id="patient">
+													<h5 class="font-weight-semibold mb-4">Log In As LaborstorieEmployee</h5>
+													<form method="POST" action="{{ route('login_Patient') }}">
 														@csrf
 														<div class="form-group">
 															<x-input-label for="email" :value="__('Email')" />

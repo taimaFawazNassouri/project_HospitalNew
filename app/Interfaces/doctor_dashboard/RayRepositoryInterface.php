@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\doctor_dashboard;
+namespace App\Interfaces\Doctor_dashboard;
 use Illuminate\Http\Request;
 
 

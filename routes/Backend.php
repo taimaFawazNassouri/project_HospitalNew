@@ -9,10 +9,15 @@ use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\PaymentAccountController;
+use App\Http\Controllers\Dashboard\RayEmployeeController;
+use App\Http\Controllers\Dashboard\LaboratorieEmployeeController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\DoctorLoginController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
+use App\Events\MyEvent;
 use App\Livewire\Counter;
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -45,8 +50,10 @@ use Illuminate\Support\Facades\Route;
         //############################   Dashboard admin #########################################
         
         Route::get('/dashboard/admin', function () {
-            return view('Dashboard.Admin.index');
-        })->middleware(['auth:admin', 'verified'])->name('dashboard.user');
+            $data['ser'] = \App\Models\Service::count();
+            $data['grp'] = \App\Models\Group::count();
+            return view('Dashboard.Admin.index',$data);
+        })->middleware(['auth:admin', 'verified'])->name('dashboard.admin');
         Route::post('logout/Admin', [AdminController::class, 'destroy'])->middleware(['auth:admin', 'verified'])->name('logout_admin');
         
         //############################ end Dashboard admin #########################################        
@@ -75,8 +82,7 @@ use Illuminate\Support\Facades\Route;
 
 
             Route::view('Add_GroupService', 'livewire.Group_Service.include')->name('Add_GroupService');
-
-
+        
             Livewire::setUpdateRoute(function ($handle) {
                 return Route::post('/livewire/update', $handle);
             });
@@ -115,31 +121,23 @@ use Illuminate\Support\Facades\Route;
           Route::resource('Payment', PaymentAccountController::class);
 
           //############################# end PaymentAccount route ######################################
-
-
-
-
-
-
-
-      
-        
- 
-
-      
-      
           
+          //############################# start RayEmployee route ######################################
+          Route::resource('RayEmployee', RayEmployeeController::class);
 
+          //############################# end RayEmployee route ######################################
        
+          //############################# start LaboratorieEmployee route ######################################
+          Route::resource('LaboratorieEmployee', LaboratorieEmployeeController::class);
+
+          //############################# end LaboratorieEmployee route ######################################
         
-  
-   
-
- 
-
+       
     
         
     });
+   
+
 
      
         

@@ -1,4 +1,4 @@
-@extends('Dashboard.layouts.master_doctor')
+@extends('Dashboard.layouts.master')
 @section('css')
     <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
@@ -72,7 +72,7 @@
 
 
 
-                                        {{-- Start Invices Patient --}}
+                                        {{-- Start InvoicesRay Patient --}}
 
                                         <div class="tab-pane" id="tab2">
 
@@ -83,6 +83,8 @@
                                                         <th>#</th>
                                                         <th>اسم الخدمه</th>
                                                         <th>اسم الدكتور</th>
+                                                        <th>اسم موظف الأشعة </th>
+                                                        <th>حالة الكشف </th>
                                                         <th>العمليات</th>
                                                     </tr>
                                                     </thead>
@@ -92,14 +94,32 @@
                                                             <td>{{$loop->iteration}}</td>
                                                             <td>{{$patient_ray->description}}</td>
                                                             <td>{{$patient_ray->doctor->name}}</td>
+                                                            {{-- <td>{{$patient_ray->employee_id !== null ? $patient_ray->employee->name: 'No Employee' }}</td> --}}
+                                                            {{-- <td>{{$patient_ray->employee->name ??'No Employee' }}</td> --}}
+                                                            <td>{{$patient_ray->employee->name}}
+
+                                                            @if ($patient_ray->case == 0)
+                                                                <td class="text-danger">غير مكتملة</td>  
+                                                            @else
+                                                                <td class="text-success"> مكتملة</td>  
+                                                            @endif
+                                                            
                                                             @if($patient_ray->doctor_id == auth()->user()->id)
+                                                                @if ($patient_ray->case == 0)
                                                                 <td>
                                                                     <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale"  data-toggle="modal" href="#edit_xray_conversion{{$patient_ray->id}}"><i class="fas fa-edit"></i></a>
                                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$patient_ray->id}}"><i class="las la-trash"></i></a>
                                                                 </td>
+                                                                @else
+                                                                <td>
+                                                                <a class="modal-effect btn btn-sm btn-warning"  href="{{route('invoices.show',$patient_ray->id)}}"><i class="fas fa-binoculars"></i></a>
+
+                                                                </td>
+
+                                                                @endif
                                                             @endif
                                                         </tr>
-                                                        @include('Dashboard.doctor.invoices.edit_xray')
+                                                        @include('Dashboard.doctor.invoices.edit_xrays')
                                                         @include('Dashboard.doctor.invoices.delete_ray')
                                                     @endforeach
                                                     </tbody>
@@ -107,11 +127,11 @@
                                             </div>
                                         </div>
 
-                                        {{-- End Invices Patient --}}
+                                        {{-- End InvoicesRay Patient --}}
 
 
 
-                                        {{-- Start Receipt Patient  --}}
+                                        {{-- Start InvoicesLaboratorie Patient  --}}
 
                                         <div class="tab-pane" id="tab3">
                                             <div class="table-responsive">
@@ -130,11 +150,19 @@
                                                             <td>{{$loop->iteration}}</td>
                                                             <td>{{$patient_Laboratorie->description}}</td>
                                                             <td>{{$patient_Laboratorie->doctor->name}}</td>
+                                                            
                                                             @if($patient_Laboratorie->doctor_id == auth()->user()->id)
+                                                                @if ($patient_Laboratorie->case == 0)
                                                                 <td>
                                                                     <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale"  data-toggle="modal" href="#edit_laboratorie_conversion{{$patient_Laboratorie->id}}"><i class="fas fa-edit"></i></a>
-                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#deleted_laboratorie{{$patient_Laboratorie->id}}"><i class="las la-trash"></i></a>
+                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$patient_Laboratorie->id}}"><i class="las la-trash"></i></a>
                                                                 </td>
+                                                                @else
+                                                                <td>
+                                                                <a class="modal-effect btn btn-sm btn-warning"  href="{{route('Laboratories.show',$patient_Laboratorie->id)}}"><i class="fas fa-binoculars"></i></a>
+
+                                                                </td>
+                                                                @endif
                                                             @endif
                                                         </tr>
                                                         @include('Dashboard.doctor.invoices.edit_laboratorie_conversion')

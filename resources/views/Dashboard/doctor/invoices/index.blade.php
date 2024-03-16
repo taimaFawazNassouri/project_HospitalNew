@@ -1,4 +1,4 @@
-@extends('Dashboard.layouts.master_doctor')
+@extends('Dashboard.layouts.master')
 @section('title')
    الكشوفات
 @stop

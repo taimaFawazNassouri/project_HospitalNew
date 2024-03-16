@@ -36,7 +36,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
         try {
 
-            // store receipt_accounts
+            // store PaymentAccount
             $payment_accounts = new PaymentAccount();
             $payment_accounts->date =date('y-m-d');
             $payment_accounts->patient_id = $request->patient_id;
@@ -85,7 +85,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
         try {
 
-            // update receipt_accounts
+            // update PaymentAccount
             $payment_accounts = PaymentAccount::findorfail($request->id);
             $payment_accounts->date =date('y-m-d');
             $payment_accounts->patient_id = $request->patient_id;

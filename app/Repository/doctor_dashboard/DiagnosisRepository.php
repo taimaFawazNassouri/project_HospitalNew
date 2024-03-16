@@ -1,8 +1,8 @@
 <?php
 
 
-namespace App\Repository\doctor_dashboard;
-use App\Interfaces\doctor_dashboard\DiagnosisRepositoryInterface;
+namespace App\Repository\Doctor_dashboard;
+use App\Interfaces\Doctor_dashboard\DiagnosisRepositoryInterface;
 use App\Models\Invoice;
 use App\Models\Diagnostic;
 use Illuminate\Support\Facades\DB;

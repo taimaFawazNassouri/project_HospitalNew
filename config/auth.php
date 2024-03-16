@@ -48,6 +48,19 @@ return [
             'driver' => 'session',
             'provider' => 'doctors',
         ],
+        'ray_employee' => [
+            'driver' => 'session',
+            'provider' => 'ray_employees',
+        ],
+        'laboratorie_employee' => [
+            'driver' => 'session',
+            'provider' => 'laboratorie_employees',
+        ],
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+      
     ],
 
     /*
@@ -81,6 +94,21 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Doctor::class,
         ],
+
+        'ray_employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\RayEmployee::class,
+        ],
+
+        'laboratorie_employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\LaboratorieEmployee::class,
+        ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

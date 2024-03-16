@@ -1,8 +1,8 @@
 <?php
 
 
-namespace App\Repository\doctor_dashboard;
-use App\Interfaces\doctor_dashboard\LaboratorieRepositoryInterface;
+namespace App\Repository\Doctor_dashboard;
+use App\Interfaces\Doctor_dashboard\LaboratorieRepositoryInterface;
 use App\Models\Invoice;
 use App\Models\Laboratorie;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +33,8 @@ class LaboratoriesRepository implements LaboratorieRepositoryInterface{
 
     public function update($request, $id){
         try{
-            $Laboratorie = Laboratorie::findOrFail($id);
-            $Laboratorie->update([
+            $patient_Laboratorie = Laboratorie::findOrFail($id);
+            $patient_Laboratorie->update([
                 'description'=>$request->description,
 
             ]);
@@ -63,5 +63,18 @@ class LaboratoriesRepository implements LaboratorieRepositoryInterface{
         }
 
     }
+    public function show($id){
+
+        // $rays = Ray::where('doctor_id', Auth::user()->id)->first();
+        $laboratories = Laboratorie::findOrFail($id);
+        if ($laboratories->doctor_id != auth()->user()->id)
+         {
+          // abort(404);
+          return redirect()->route('404');
+         }
+        return view('Dashboard.doctor.invoices.view_laboratorie',compact('laboratories'));
+      }
+    
+
 
 }

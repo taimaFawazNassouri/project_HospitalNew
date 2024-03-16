@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
-   // protected $gurded =[];
-    protected $fillable =['invoice_status'];
+    protected $gurded =[];
+    //protected $fillable =['invoice_status'];
 
     public function Service()
     {

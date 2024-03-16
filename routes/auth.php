@@ -11,6 +11,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\DoctorLoginController;
+use App\Http\Controllers\Auth\RayEmployeeController;
+use App\Http\Controllers\Auth\LaboratorieEmployeeController;
+use App\Http\Controllers\Auth\PatientController;
+
+
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -29,13 +35,25 @@ Route::middleware('guest')->group(function () {
     //=========================End Login $ Logout User ========================================
 
     //========================= Login Admin ========================================
-   Route::post('Admin/login', [AdminController::class, 'store'])->name('login_admin');
+    Route::post('Admin/login', [AdminController::class, 'store'])->name('login_admin');
     //=========================End Login Admin ========================================
+
     //========================= Login  Doctor ========================================
-   Route::post('Doctor/login', [DoctorLoginController::class, 'store'])->name('login_doctor');
-
-
+    Route::post('Doctor/login', [DoctorLoginController::class, 'store'])->name('login_doctor');
     //=========================End Login Doctor ========================================
+
+    //========================= Login  RayEmployee ========================================
+    Route::post('RayEmployee/login', [RayEmployeeController::class, 'store'])->name('login_RayEmployee');
+   //=========================End Login RayEmployee ========================================
+
+   //========================= Login  LaboratorieEmployee ========================================
+    Route::post('LaboratorieEmployee/login', [LaboratorieEmployeeController::class, 'store'])->name('login_LaboratorieEmployee');
+  //=========================End Login LaboratorieEmployee ========================================
+
+   //========================= Login  Patient ========================================
+   Route::post('Patient/login', [PatientController::class, 'store'])->name('login_Patient');
+   //=========================End Login Patient ========================================
+ 
 
 
 
