@@ -35,6 +35,7 @@ Route::group(
 
     //################################ end dashboard ray_employee #####################################
     Route::middleware(['auth:ray_employee'])->group(function () {
+        
         Route::resource('invoicesRays', InvoiceController::class);
         Route::get('Completed_Invoices/Rays',[InvoiceController::class,'completed_invoices'])->name('CompletedInvoices.Rays');
         Route::get('View_Rays/{id}',[InvoiceController::class,'view_rays'])->name('ViewRays');

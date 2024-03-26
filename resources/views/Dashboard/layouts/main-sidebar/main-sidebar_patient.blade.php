@@ -41,9 +41,11 @@
                     <ul class="slide-menu">
                             <li><a class="slide-item" href="{{ route('list.doctors') }}">{{trans('Doctors.doctor_list')}}</a></li>
                             <li><a class="slide-item" href="{{ route('chat.doctors') }}">{{trans('Patients.chatLast')}}</a></li>
+
                     </ul>
-            </li>
-         
+            </li>  
+           
+          
         </ul>
     </div>
 </aside>

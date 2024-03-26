@@ -26,8 +26,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <livewire:counter /> 
-
+                    <livewire:test /> 
                 </div>
             </div>
         </div>

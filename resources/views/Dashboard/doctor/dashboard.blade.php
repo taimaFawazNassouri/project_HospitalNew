@@ -407,6 +407,7 @@
 @endsection
 @section('js')
 <!--Internal  Chart.bundle js -->
+
 <script src="{{URL::asset('Dashboard/plugins/chart.js/Chart.bundle.min.js')}}"></script>
 <!-- Moment js -->
 <script src="{{URL::asset('Dashboard/plugins/raphael/raphael.min.js')}}"></script>
@@ -425,5 +426,5 @@
 <script src="{{URL::asset('Dashboard/js/modal-popup.js')}}"></script>
 <!--Internal  index js -->
 <script src="{{URL::asset('Dashboard/js/index.js')}}"></script>
-<script src="{{URL::asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>	
+<script src="{{URL::asset('Dashboard/js/jquery.vmap.sampledata.js')}}"></script>
 @endsection

@@ -29,7 +29,7 @@ Route::group(
     ], function () {
 
 
-    //################################ dashboard laboratorie_employee ########################################
+    //################################ dashboard  ########################################
 
     Route::get('/dashboard/patient', function () {
         return view('Dashboard.dashboard_Patient.dashboard');
@@ -47,10 +47,9 @@ Route::group(
        //############################# end patients route ######################################
 
       //#############################  chat route ##########################################
-      Livewire::setUpdateRoute(function ($handle)
-      {
-           return Route::post('/livewire/update', $handle);
-      });
+    //   Livewire::setUpdateRoute(function ($handle) {
+    //     return Route::post('/livewire/update', $handle);
+    //   });
       Route::get('list/doctors', CreateChat::class)->name('list.doctors');
       Route::get('chat/doctors', Main::class)->name('chat.doctors');
 

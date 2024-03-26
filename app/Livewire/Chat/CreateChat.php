@@ -2,15 +2,13 @@
 
 namespace App\Livewire\Chat;
 
-use Livewire\Component;
-use App\Models\Patient;
-use App\Models\Doctor;
 use App\Models\Conversation;
+use App\Models\Doctor;
 use App\Models\Message;
+use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-
+use Livewire\Component;
 
 class CreateChat extends Component
 {
@@ -22,7 +20,8 @@ class CreateChat extends Component
         $this->auth_email = auth()->user()->email;
     }
 
-    public function createConversation($receiver_email){
+    public function createConversation($receiver_email)
+    {
 
         $chek_Conversation = Conversation::checkConversation($this->auth_email, $receiver_email)->get();
         if ($chek_Conversation->isEmpty()) {
@@ -44,25 +43,22 @@ class CreateChat extends Component
                 DB::commit();
                 $this->emitSelf('render');
             } 
-            catch (\Exception $e){
+            catch (\Exception $e) {
                 DB::rollBack();
             }
-        } 
-        else {
+        } else {
 
             dd('Conversation yes');
         }
+
     }
+
     public function render()
     {
-        if(Auth::guard('doctor')->check())
-        {
-            $this->users = Patient::all();
-
-        }
-        else{
+        if (Auth::guard('patient')->check()) {
             $this->users = Doctor::all();
-
+        } else {
+            $this->users = Patient::all();
         }
         return view('livewire.chat.create-chat')->extends('Dashboard.layouts.master');
     }

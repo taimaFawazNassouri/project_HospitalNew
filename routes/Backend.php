@@ -19,6 +19,7 @@ use App\Livewire\Counter;
 
 
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,16 +77,17 @@ use Illuminate\Support\Facades\Route;
             Route::post('update_status',[DoctorController::class ,'update_status'])->name('update_status');
 
             //############################   Dashboard services #########################################
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/livewire/update', $handle);
+            });
             Route::resource('Single_Service', SingleServiceController::class);
 
            //############################   Dashboard Group services #########################################
 
 
             Route::view('Add_GroupService', 'livewire.Group_Service.include')->name('Add_GroupService');
-        
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/livewire/update', $handle);
-            });
+
+          
            //############################# insurance route ########################################
             Route::resource('insurance', InsuranceController::class);
 

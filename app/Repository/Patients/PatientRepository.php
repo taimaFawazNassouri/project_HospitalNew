@@ -39,7 +39,7 @@ class PatientRepository implements PatientRepositoryInterface
        try {
            $Patients = new Patient();
            $Patients->email = $request->email;
-           $Patients->Password = Hash::make($request->Phone);
+           $Patients->Password = Hash::make($request->phone);
            $Patients->Date_Birth = $request->Date_Birth;
            $Patients->Phone = $request->Phone;
            $Patients->Gender = $request->Gender;

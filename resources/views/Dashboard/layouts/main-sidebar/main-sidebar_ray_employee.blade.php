@@ -20,7 +20,7 @@
             </div>
         </div>
         <ul class="side-menu">
-            
+                
             <li class="slide">
                 <ul class="side-menu">
                     <li class="side-item side-item-category">{{trans('main-sidebar_trans.Main')}}</li>

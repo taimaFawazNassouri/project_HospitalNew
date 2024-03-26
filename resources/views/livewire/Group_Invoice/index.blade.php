@@ -1,5 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('css')
+@livewireStyles
 @endsection
 @section('title')
 {{trans('Invoices.invoice_groupService')}}
@@ -22,7 +23,8 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <livewire:group-invoices/>
+                    <livewire:group-invoices /> 
+
                 </div>
             </div>
         </div>
@@ -35,5 +37,5 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
-
+@livewireScripts
 @endsection

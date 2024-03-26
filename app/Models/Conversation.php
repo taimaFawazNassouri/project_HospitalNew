@@ -11,8 +11,7 @@ class Conversation extends Model
     protected $fillable = ['sender_email','receiver_email','last_time_message'];
     
     public function scopecheckConversation($query,$auth_email,$receiver_email){
-        return $query->where('sender_email',$auth_email)
-        ->where('receiver_email',$receiver_email)->orwhere('receiver_email',$auth_email)->
+        return $query->where('sender_email',$auth_email)->where('receiver_email',$receiver_email)->orwhere('receiver_email',$auth_email)->
         where('sender_email',$receiver_email);
 
     }

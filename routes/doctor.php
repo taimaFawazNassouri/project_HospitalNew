@@ -1,6 +1,4 @@
 <?php
-
-
 use App\Http\Controllers\Doctor\DiagnosisController;
 use App\Http\Controllers\Doctor\LaboratorieController;
 use App\Http\Controllers\Doctor\RayController;
@@ -29,6 +27,7 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
+       
 
 
     //################################ dashboard doctor ########################################
@@ -40,74 +39,48 @@ Route::group(
 
     //################################ end dashboard doctor #####################################
     Route::middleware(['auth:doctor'])->group(function () {
-        Livewire::setUpdateRoute(function ($handle)
-        {
+        Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });
         Route::get('list/patients', CreateChat::class)->name('list.patients');
         Route::get('chat/patients', Main::class)->name('chat.patients');
-  
+      
        
-       
-        Route::prefix('doctor')->group(function () {
-            //############################# completed_invoices route ##########################################
-            Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('completed_invoices');
-            //############################# end invoices route ################################################
-
-            //############################# review_invoices route ##########################################
-            Route::get('review_invoices', [InvoiceController::class,'review_invoices'])->name('review_invoices');
-            //############################# end invoices route #############################################
-
-            //############################# invoices route ##########################################
-            Route::resource('Invoices', InvoiceController::class);
-            //############################# end invoices route ######################################
-
-
-            //############################# review_invoices route ##########################################
-            Route::post('add_review', [DiagnosisController::class,'add_review'])->name('add_review');
-            //############################# end invoices route #############################################
-
-
-            //############################# Diagnostics route ##########################################
-
-            Route::resource('Diagnostics', DiagnosisController::class);
-
-            //############################# end Diagnostics route ######################################
-
-
-            //############################# rays route ##########################################
-
-            Route::resource('Rays', RayController::class);
-
-            //############################# end rays route ######################################
-
-
-            //############################# Laboratories route ##########################################
-
-            Route::resource('Laboratories', LaboratorieController::class);
-
-            //############################# end Laboratories route ######################################
-
-
-            //############################# rays route ##########################################
-
-            Route::get('PatientDetails/{id}', [PatientDetailsController::class,'index'])->name('PatientDetails');
-
-            //############################# end rays route ######################################
-            
-        
-       
-
-
-        });
+    
+        //############################# completed_invoices route ##########################################
      
-       
-        
-        Route::get('/404', function () {
-            return view('Dashboard.404');
-        })->name('404');
-    });
+        Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('completed_invoices');
+        Route::get('review_invoices', [InvoiceController::class,'review_invoices'])->name('review_invoices');
+        Route::resource('Invoices', InvoiceController::class);
+        Route::post('add_review', [DiagnosisController::class,'add_review'])->name('add_review');
+        Route::resource('Diagnostics', DiagnosisController::class);
+        Route::resource('Rays', RayController::class);
+        Route::resource('Laboratories', LaboratorieController::class);
+        Route::get('PatientDetails/{id}', [PatientDetailsController::class,'index'])->name('PatientDetails');
+ 
+       //#############################  chat route ##########################################
+      
+      
+ 
+      //############################# end chat route ############################################
+ 
+ 
+         Route::get('/404', function () {
+             return view('Dashboard.404');
+         })->name('404');
+ 
+ 
+ 
+ 
+ 
+     });
+   
+ 
+ //---------------------------------------------------------------------------------------------------------------
+ 
+ 
+     
     require __DIR__ . '/auth.php';
-
-
-});
+ 
+ 
+ });
